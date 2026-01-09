@@ -1,3 +1,9 @@
+## 0.2.0 (2026-01-09)
+
+### Features
+
+-  Update GetUppgifterHandlaggareResponse with more properties ([7ae06](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/7ae06642c1aef24) Nils Elveros)  
+
 ## 0.1.7 (2025-12-18)
 
 ### Bug Fixes
