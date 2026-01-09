@@ -107,9 +107,23 @@ components:
             - Ny
             - Tilldelad
             - Avslutad
-        regeltyp:
+        kundbehov:
           type: string
-          description: Vilken typ av regeln uppgiften avser. Används för av frontend för att veta vilken microfrontend som ska laddas.
+          description: Namn på kundbehov
+        regel:
+          type: string
+          description: Namn på regeln
+        beskrivning:
+          type: string
+          description: Kortfattad beskrivning av uppgiften
+        verksamhetslogik:
+          type: string
+        roll:
+          type: string
+          description: Vilken roll som bör utföra uppgiften
+        url:
+          type: string
+          description: Länk till resursen
 
     OperativaUppgifter:
       type: array
