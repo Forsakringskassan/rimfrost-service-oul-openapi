@@ -70,7 +70,7 @@ components:
       type: object
       required:
         - uppgift_id
-        - kundbehovsflode_id
+        - handlaggning_id
         - status
         - skapad
       properties:
@@ -78,10 +78,10 @@ components:
           type: string
           format: uuid
           description: Unikt ID som identifierar instansen av uppgifts-objektet
-        kundbehovsflode_id:
+        handlaggning_id:
           type: string
           format: uuid
-          description: Unikt ID som identifierar kundflödet
+          description: Unikt ID som identifierar handläggningsärendet
         skapad:
           type: string
           format: date
@@ -107,9 +107,9 @@ components:
             - Ny
             - Tilldelad
             - Avslutad
-        kundbehov:
+        yrkande:
           type: string
-          description: Namn på kundbehov
+          description: Namn på yrkande
         regel:
           type: string
           description: Namn på regeln
@@ -131,6 +131,6 @@ components:
         $ref: '#/components/schemas/OperativUppgift'
       example:
         - uppgift_id: "142bf38e-7cbf-408f-9fe9-6d7aa7636d85"
-          kundbehovsflode_id: "5f3e26ca-c7f7-4711-b2ee-c09b38fa6f1c"
+          handlaggning_id: "5f3e26ca-c7f7-4711-b2ee-c09b38fa6f1c"
           status: "Tilldelad"
           skapad: "2025-03-25T00:00:00Z"
