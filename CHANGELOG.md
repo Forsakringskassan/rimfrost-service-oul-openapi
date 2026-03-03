@@ -1,3 +1,17 @@
+## 0.2.1 (2026-03-03)
+
+### Bug Fixes
+
+-  renaming handlaggning och yrkande ([4697b](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/4697bb75231a3a9) Ulf Slunga)  
+-  **deps**  update jackson monorepo to v2.21.1 ([e64ea](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/e64ea7c79758b64) renovate[bot])  
+-  removing NPM_TOKEN ([76dee](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/76deee0e917ff21) Tomas Bjerre)  
+-  **deps**  update dependency org.openapitools:jackson-databind-nullable to v0.2.9 ([368a6](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/368a6e77912859b) renovate[bot])  
+-  **deps**  update jackson monorepo ([fa106](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/fa106394eef1a90) renovate[bot])  
+
+### Dependency updates
+
+- update gradle to v9.3.1 ([dace9](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/dace9cfd5503add) renovate[bot])  
+- update gradle to v9.3.0 ([6f6cf](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/6f6cfac5b358d0d) renovate[bot])  
 ## 0.2.0 (2026-01-09)
 
 ### Features
