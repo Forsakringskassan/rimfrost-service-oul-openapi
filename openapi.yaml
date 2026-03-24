@@ -107,9 +107,12 @@ components:
             - Ny
             - Tilldelad
             - Avslutad
-        yrkande:
-          type: string
-          description: Namn på yrkande
+        individer:
+          type: array
+          description: Lista av individ-ID (UUID)
+          items:
+            type: string
+            format: uuid
         regel:
           type: string
           description: Namn på regeln
