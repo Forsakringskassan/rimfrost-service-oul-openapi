@@ -1,3 +1,12 @@
+## 0.2.2 (2026-03-24)
+
+### Bug Fixes
+
+-  individer ist för yrkande ([5618d](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/5618dec80cf4b2b) Ulf Slunga)  
+
+### Dependency updates
+
+- update gradle to v9.4.0 ([a78a5](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/a78a530b2e9ac37) renovate[bot])  
 ## 0.2.1 (2026-03-03)
 
 ### Bug Fixes
