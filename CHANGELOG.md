@@ -1,3 +1,9 @@
+## 0.2.3 (2026-04-09)
+
+### Bug Fixes
+
+-  Use Idtyp for individ list ([c7ddb](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/c7ddb936fa9a0f0) Lars Persson)  
+
 ## 0.2.2 (2026-03-24)
 
 ### Bug Fixes
