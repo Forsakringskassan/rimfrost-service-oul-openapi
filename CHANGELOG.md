@@ -1,3 +1,13 @@
+## 0.2.4 (2026-04-10)
+
+### Bug Fixes
+
+-  Idtyp för identifiering av handläggare ([d7062](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/d706210bd474ab3) Ulf Slunga)  
+-  **deps**  update dependency org.openapitools:jackson-databind-nullable to v0.2.10 ([40a3b](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/40a3bddd299a9e8) renovate[bot])  
+
+### Dependency updates
+
+- update gradle to v9.4.1 ([541eb](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/541eb7a9cb0010a) renovate[bot])  
 ## 0.2.3 (2026-04-09)
 
 ### Bug Fixes
