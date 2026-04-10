@@ -5,19 +5,27 @@ info:
   description: API för handläggare att hämta ny uppgift och lista sina tilldelade operativa uppgifter.
 
 paths:
-  /uppgifter/handlaggare/{handlaggar_id}:
+  /uppgifter/handlaggare/{id_typ}/{id_varde}:
+    parameters:
+      - name: id_typ
+        in: path
+        required: true
+        description: Typ av identifiering av handläggare
+        schema:
+          type: string
+          example: "kortnummer"
+      - name: id_varde
+        in: path
+        required: true
+        description: Unik identifiering av handläggare
+        schema:
+          type: string
+          example: "123456789"
     post:
       tags: [OperativtUppgiftslagerController]
       operationId: postUppgifterHandlaggare
       summary: Hämta ny uppgift
       description: Hämta ny uppgift som tilldelas handläggaren
-      parameters:
-        - name: handlaggar_id
-          in: path
-          required: true
-          description: Handläggarens id
-          schema:
-            type: string
       responses:
         '200':
           description: Ny uppgift hämtad OK
@@ -32,13 +40,6 @@ paths:
       operationId: getUppgifterHandlaggare
       summary: Hämta operativa uppgifter som tilldelats handläggare
       description: Hämta operativa uppgifter som tilldelats handläggare
-      parameters:
-        - name: handlaggar_id
-          in: path
-          required: true
-          description: Handläggarens id
-          schema:
-            type: string
       responses:
         '200':
           description: Uppgifter hämtade OK
@@ -85,7 +86,8 @@ components:
           format: date
           description: DateTime av när uppgiften skapades i ISO 8601 format
         handlaggar_id:
-          type: string
+          allOf:
+            - $ref: "#/components/schemas/Idtyp"
           description: Unikt ID för den tilldelade handläggaren
         planerad_till:
           type: string
