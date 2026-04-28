@@ -1,3 +1,17 @@
+## 1.0.0 (2026-04-28)
+
+### Breaking changes
+
+-  release 1.0 ([67c31](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/67c3194def50516) Ulf Slunga)  
+
+### Features
+
+-  release 1.0 ([67c31](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/67c3194def50516) Ulf Slunga)  
+
+### Bug Fixes
+
+-  **deps**  update jackson monorepo to v2.21.2 ([a2409](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/a24090ce9ad234f) renovate[bot])  
+
 ## 0.2.4 (2026-04-10)
 
 ### Bug Fixes
