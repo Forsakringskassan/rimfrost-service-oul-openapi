@@ -106,6 +106,7 @@ components:
             - Ny
             - Tilldelad
             - Avslutad
+            - Avbruten
         individer:
           type: array
           description: Lista av individ-ID
