@@ -1,3 +1,12 @@
+## 2.0.1 (2026-05-20)
+
+### Bug Fixes
+
+-  Change group id to avoid collision with classes defined in other OUL openapi spec ([9347a](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/9347a9a1ecd7a74) Lars Persson)  
+
+### Dependency updates
+
+- update gradle to v9.5.1 ([79760](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/79760ee9ab9359b) renovate[bot])  
 ## 2.0.0 (2026-05-07)
 
 ### Breaking changes
