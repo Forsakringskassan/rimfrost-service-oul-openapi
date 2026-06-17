@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: Operativt uppgiftslager API
   version: 1.0.0
-  description: API för handläggare att hämta ny uppgift och lista sina tilldelade operativa uppgifter.
+  description: API för handläggare att hämta ny uppgift, lista tilldelade operativa uppgifter, se teamets uppgifter samt tilldela om en uppgift till sig själv från en kollega i samma team.
 
 security:
   - bearerAuth: []
@@ -23,28 +23,11 @@ paths:
                 $ref: '#/components/schemas/PostUppgifterHandlaggareResponse'
         '400':
           description: Bad request
-
-  /uppgifter/handlaggare/{id_typ}/{id_varde}:
-    parameters:
-      - name: id_typ
-        in: path
-        required: true
-        description: Typ av identifiering av handläggare
-        schema:
-          type: string
-          example: "kortnummer"
-      - name: id_varde
-        in: path
-        required: true
-        description: Unik identifiering av handläggare
-        schema:
-          type: string
-          example: "123456789"
     get:
       tags: [OperativtUppgiftslagerController]
       operationId: getUppgifterHandlaggare
-      summary: Hämta operativa uppgifter som tilldelats handläggare
-      description: Hämta operativa uppgifter som tilldelats handläggare
+      summary: Hämta operativa uppgifter tilldelade till den anropande handläggaren
+      description: Returnerar operativa uppgifter tilldelade till den anropande handläggaren. Handläggarens identitet hämtas från bearer-token.
       responses:
         '200':
           description: Uppgifter hämtade OK
@@ -52,10 +35,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetUppgifterHandlaggareResponse'
-        '400':
-          description: Bad request (t.ex. felaktigt handlaggar_id)
-        '403':
-          description: Handläggaren tillhör inte teamet
 
   /uppgifter/team:
     get:
