@@ -49,7 +49,84 @@ paths:
                 $ref: '#/components/schemas/GetUppgifterHandlaggareResponse'
         '400':
           description: Bad request (t.ex. felaktigt handlaggar_id)
-  
+        '403':
+          description: Handläggaren tillhör inte teamet
+
+  /uppgifter/team/{id_typ}/{id_varde}:
+    parameters:
+      - name: id_typ
+        in: path
+        required: true
+        description: Typ av identifiering av handläggare
+        schema:
+          type: string
+          example: "kortnummer"
+      - name: id_varde
+        in: path
+        required: true
+        description: Unik identifiering av handläggare
+        schema:
+          type: string
+          example: "123456789"
+    get:
+      tags: [OperativtUppgiftslagerController]
+      operationId: getUppgifterTeam
+      summary: Hämta operativa uppgifter tilldelade till handläggarens team
+      description: Returnerar alla operativa uppgifter tilldelade till någon av handläggarens team-medlemmar
+      responses:
+        '200':
+          description: Uppgifter hämtade OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUppgifterHandlaggareResponse'
+        '400':
+          description: Bad request (t.ex. felaktigt id_varde)
+        '403':
+          description: Handläggaren tillhör inte ett känt team
+
+  /uppgifter/{uppgift_id}/handlaggare/{id_typ}/{id_varde}:
+    parameters:
+      - name: uppgift_id
+        in: path
+        required: true
+        description: ID för den uppgift som ska tilldelas om
+        schema:
+          type: string
+          format: uuid
+      - name: id_typ
+        in: path
+        required: true
+        description: Typ av identifiering av den handläggare som ska tilldelas uppgiften
+        schema:
+          type: string
+          example: "kortnummer"
+      - name: id_varde
+        in: path
+        required: true
+        description: Unik identifiering av den handläggare som ska tilldelas uppgiften
+        schema:
+          type: string
+          example: "123456789"
+    post:
+      tags: [OperativtUppgiftslagerController]
+      operationId: postUppgiftHandlaggare
+      summary: Tilldela om en uppgift till en annan handläggare
+      description: Tilldelar uppgiften till den angivna handläggaren. Kräver att uppgiftens nuvarande tilldelade handläggare tillhör samma team.
+      responses:
+        '200':
+          description: Uppgiften omtilldelad OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostUppgiftHandlaggareResponse'
+        '400':
+          description: Bad request (t.ex. felaktigt uppgift_id eller handlaggar_id)
+        '403':
+          description: Handläggaren tillhör inte teamet
+        '404':
+          description: Uppgiften hittades inte
+
 components:
   schemas:
     PostUppgifterHandlaggareResponse:
@@ -58,6 +135,14 @@ components:
         operativ_uppgift:
           $ref: '#/components/schemas/OperativUppgift'
           nullable: true
+
+    PostUppgiftHandlaggareResponse:
+      type: object
+      required:
+        - operativ_uppgift
+      properties:
+        operativ_uppgift:
+          $ref: '#/components/schemas/OperativUppgift'
 
     GetUppgifterHandlaggareResponse:
       type: object
