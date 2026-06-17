@@ -2,30 +2,18 @@ openapi: 3.0.3
 info:
   title: Operativt uppgiftslager API
   version: 1.0.0
-  description: API för handläggare att hämta ny uppgift och lista sina tilldelade operativa uppgifter.
+  description: API för handläggare att hämta ny uppgift, lista tilldelade operativa uppgifter, se teamets uppgifter samt tilldela om en uppgift till sig själv från en kollega i samma team.
+
+security:
+  - bearerAuth: []
 
 paths:
-  /uppgifter/handlaggare/{id_typ}/{id_varde}:
-    parameters:
-      - name: id_typ
-        in: path
-        required: true
-        description: Typ av identifiering av handläggare
-        schema:
-          type: string
-          example: "kortnummer"
-      - name: id_varde
-        in: path
-        required: true
-        description: Unik identifiering av handläggare
-        schema:
-          type: string
-          example: "123456789"
+  /uppgifter/handlaggare:
     post:
       tags: [OperativtUppgiftslagerController]
       operationId: postUppgifterHandlaggare
       summary: Hämta ny uppgift
-      description: Hämta ny uppgift som tilldelas handläggaren
+      description: Hämta ny uppgift som tilldelas den anropande handläggaren. Handläggarens identitet hämtas från bearer-token.
       responses:
         '200':
           description: Ny uppgift hämtad OK
@@ -34,12 +22,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/PostUppgifterHandlaggareResponse'
         '400':
-          description: Bad request (t.ex. felaktigt handlaggar_id)
+          description: Bad request
     get:
       tags: [OperativtUppgiftslagerController]
       operationId: getUppgifterHandlaggare
-      summary: Hämta operativa uppgifter som tilldelats handläggare
-      description: Hämta operativa uppgifter som tilldelats handläggare
+      summary: Hämta operativa uppgifter tilldelade till den anropande handläggaren
+      description: Returnerar operativa uppgifter tilldelade till den anropande handläggaren. Handläggarens identitet hämtas från bearer-token.
       responses:
         '200':
           description: Uppgifter hämtade OK
@@ -47,10 +35,61 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetUppgifterHandlaggareResponse'
+
+  /uppgifter/team:
+    get:
+      tags: [OperativtUppgiftslagerController]
+      operationId: getUppgifterTeam
+      summary: Hämta operativa uppgifter tilldelade till handläggarens team
+      description: Returnerar alla operativa uppgifter tilldelade till någon av handläggarens team-medlemmar. Handläggarens identitet hämtas från bearer-token.
+      responses:
+        '200':
+          description: Uppgifter hämtade OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUppgifterHandlaggareResponse'
+        '403':
+          description: Handläggaren tillhör inte ett känt team
+
+  /uppgifter/{uppgift_id}/handlaggare:
+    parameters:
+      - name: uppgift_id
+        in: path
+        required: true
+        description: ID för den uppgift som ska tilldelas om
+        schema:
+          type: string
+          format: uuid
+    post:
+      tags: [OperativtUppgiftslagerController]
+      operationId: postUppgiftHandlaggare
+      summary: Tilldela om en uppgift till den anropande handläggaren
+      description: Tilldelar uppgiften till den anropande handläggaren. Handläggarens identitet hämtas från bearer-token. Kräver att uppgiftens nuvarande tilldelade handläggare tillhör samma team.
+      responses:
+        '200':
+          description: Uppgiften omtilldelad OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostUppgiftHandlaggareResponse'
         '400':
-          description: Bad request (t.ex. felaktigt handlaggar_id)
-  
+          description: Bad request (t.ex. felaktigt uppgift_id)
+        '403':
+          description: Handläggaren tillhör inte teamet
+        '404':
+          description: Uppgiften hittades inte
+
 components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: >
+        Bearer-token innehållande handläggarens identitet (id_typ och id_varde,
+        t.ex. "kortnummer" och "123456789"). Används av server-sidan för att
+        fastställa den anropande handläggarens identitet och team-tillhörighet.
+
   schemas:
     PostUppgifterHandlaggareResponse:
       type: object
@@ -58,6 +97,14 @@ components:
         operativ_uppgift:
           $ref: '#/components/schemas/OperativUppgift'
           nullable: true
+
+    PostUppgiftHandlaggareResponse:
+      type: object
+      required:
+        - operativ_uppgift
+      properties:
+        operativ_uppgift:
+          $ref: '#/components/schemas/OperativUppgift'
 
     GetUppgifterHandlaggareResponse:
       type: object
