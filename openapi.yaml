@@ -85,7 +85,7 @@ paths:
         '403':
           description: Handläggaren tillhör inte ett känt team
 
-  /uppgifter/{uppgift_id}/handlaggare/{id_typ}/{id_varde}:
+  /uppgifter/{uppgift_id}/handlaggare:
     parameters:
       - name: uppgift_id
         in: path
@@ -94,25 +94,17 @@ paths:
         schema:
           type: string
           format: uuid
-      - name: id_typ
-        in: path
-        required: true
-        description: Typ av identifiering av den handläggare som ska tilldelas uppgiften
-        schema:
-          type: string
-          example: "kortnummer"
-      - name: id_varde
-        in: path
-        required: true
-        description: Unik identifiering av den handläggare som ska tilldelas uppgiften
-        schema:
-          type: string
-          example: "123456789"
     post:
       tags: [OperativtUppgiftslagerController]
       operationId: postUppgiftHandlaggare
       summary: Tilldela om en uppgift till en annan handläggare
       description: Tilldelar uppgiften till den angivna handläggaren. Kräver att uppgiftens nuvarande tilldelade handläggare tillhör samma team.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Idtyp'
       responses:
         '200':
           description: Uppgiften omtilldelad OK
