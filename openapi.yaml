@@ -4,7 +4,26 @@ info:
   version: 1.0.0
   description: API för handläggare att hämta ny uppgift och lista sina tilldelade operativa uppgifter.
 
+security:
+  - bearerAuth: []
+
 paths:
+  /uppgifter/handlaggare:
+    post:
+      tags: [OperativtUppgiftslagerController]
+      operationId: postUppgifterHandlaggare
+      summary: Hämta ny uppgift
+      description: Hämta ny uppgift som tilldelas den anropande handläggaren. Handläggarens identitet hämtas från bearer-token.
+      responses:
+        '200':
+          description: Ny uppgift hämtad OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostUppgifterHandlaggareResponse'
+        '400':
+          description: Bad request
+
   /uppgifter/handlaggare/{id_typ}/{id_varde}:
     parameters:
       - name: id_typ
@@ -21,20 +40,6 @@ paths:
         schema:
           type: string
           example: "123456789"
-    post:
-      tags: [OperativtUppgiftslagerController]
-      operationId: postUppgifterHandlaggare
-      summary: Hämta ny uppgift
-      description: Hämta ny uppgift som tilldelas handläggaren
-      responses:
-        '200':
-          description: Ny uppgift hämtad OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PostUppgifterHandlaggareResponse'
-        '400':
-          description: Bad request (t.ex. felaktigt handlaggar_id)
     get:
       tags: [OperativtUppgiftslagerController]
       operationId: getUppgifterHandlaggare
@@ -52,27 +57,12 @@ paths:
         '403':
           description: Handläggaren tillhör inte teamet
 
-  /uppgifter/team/{id_typ}/{id_varde}:
-    parameters:
-      - name: id_typ
-        in: path
-        required: true
-        description: Typ av identifiering av handläggare
-        schema:
-          type: string
-          example: "kortnummer"
-      - name: id_varde
-        in: path
-        required: true
-        description: Unik identifiering av handläggare
-        schema:
-          type: string
-          example: "123456789"
+  /uppgifter/team:
     get:
       tags: [OperativtUppgiftslagerController]
       operationId: getUppgifterTeam
       summary: Hämta operativa uppgifter tilldelade till handläggarens team
-      description: Returnerar alla operativa uppgifter tilldelade till någon av handläggarens team-medlemmar
+      description: Returnerar alla operativa uppgifter tilldelade till någon av handläggarens team-medlemmar. Handläggarens identitet hämtas från bearer-token.
       responses:
         '200':
           description: Uppgifter hämtade OK
@@ -80,8 +70,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetUppgifterHandlaggareResponse'
-        '400':
-          description: Bad request (t.ex. felaktigt id_varde)
         '403':
           description: Handläggaren tillhör inte ett känt team
 
@@ -97,14 +85,8 @@ paths:
     post:
       tags: [OperativtUppgiftslagerController]
       operationId: postUppgiftHandlaggare
-      summary: Tilldela om en uppgift till en annan handläggare
-      description: Tilldelar uppgiften till den angivna handläggaren. Kräver att uppgiftens nuvarande tilldelade handläggare tillhör samma team.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Idtyp'
+      summary: Tilldela om en uppgift till den anropande handläggaren
+      description: Tilldelar uppgiften till den anropande handläggaren. Handläggarens identitet hämtas från bearer-token. Kräver att uppgiftens nuvarande tilldelade handläggare tillhör samma team.
       responses:
         '200':
           description: Uppgiften omtilldelad OK
@@ -120,6 +102,15 @@ paths:
           description: Uppgiften hittades inte
 
 components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: >
+        Bearer-token innehållande handläggarens identitet (id_typ och id_varde,
+        t.ex. "kortnummer" och "123456789"). Används av server-sidan för att
+        fastställa den anropande handläggarens identitet och team-tillhörighet.
+
   schemas:
     PostUppgifterHandlaggareResponse:
       type: object
