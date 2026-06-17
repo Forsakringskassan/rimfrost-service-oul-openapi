@@ -1,3 +1,18 @@
+## 2.1.0 (2026-06-17)
+
+### Features
+
+-  remove stale handlaggar_id reference from 400 description (FKPOC-833) ([e7511](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/e75115e186a5d1d) Ulf Slunga)  
+-  simplify handläggare endpoint to self-only and update API description (FKPOC-833) ([d9355](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/d93558eb63d5347) Ulf Slunga)  
+-  add bearer auth security scheme and simplify endpoints (FKPOC-833) ([aad97](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/aad97e55be2a374) Ulf Slunga)  
+-  use request body for handläggare id in reassign operation (FKPOC-833) ([607a1](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/607a1652b5566f2) Ulf Slunga)  
+-  Add getUppgifterTeam and postUppgiftHandlaggare operations (FKPOC-833) ([94447](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/94447ee3d41f8d7) Ulf Slunga)  
+
+### Bug Fixes
+
+-  **deps**  update jackson monorepo ([6364b](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/6364b4ee0afedd3) renovate[bot])  
+-  **deps**  update dependency se.fk.gradle:gradle-conventions to v1.18.2 ([13e36](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/13e3640d40fb22e) renovate[bot])  
+
 ## 2.0.1 (2026-05-20)
 
 ### Bug Fixes
