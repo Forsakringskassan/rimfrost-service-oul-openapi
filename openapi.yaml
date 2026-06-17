@@ -74,7 +74,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/PostUppgiftHandlaggareResponse'
         '400':
-          description: Bad request (t.ex. felaktigt uppgift_id eller handlaggar_id)
+          description: Bad request (t.ex. felaktigt uppgift_id)
         '403':
           description: Handläggaren tillhör inte teamet
         '404':
