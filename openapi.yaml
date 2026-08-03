@@ -23,6 +23,8 @@ paths:
                 $ref: '#/components/schemas/PostUppgifterHandlaggareResponse'
         '400':
           description: Bad request
+        '500':
+          description: Internt serverfel
     get:
       tags: [OperativtUppgiftslagerController]
       operationId: getUppgifterHandlaggare
@@ -35,6 +37,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetUppgifterHandlaggareResponse'
+        '500':
+          description: Internt serverfel
 
   /uppgifter/team:
     get:
@@ -51,6 +55,8 @@ paths:
                 $ref: '#/components/schemas/GetUppgifterHandlaggareResponse'
         '403':
           description: Handläggaren tillhör inte ett känt team
+        '500':
+          description: Internt serverfel
 
   /uppgifter/{uppgift_id}/handlaggare:
     parameters:
@@ -79,6 +85,8 @@ paths:
           description: Handläggaren tillhör inte teamet
         '404':
           description: Uppgiften hittades inte
+        '500':
+          description: Internt serverfel
 
 components:
   securitySchemes:
