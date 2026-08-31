@@ -116,9 +116,15 @@ components:
 
     GetUppgifterHandlaggareResponse:
       type: object
+      required:
+        - borttagna_pga_behorighet
       properties:
         operativa_uppgifter:
           $ref: '#/components/schemas/OperativaUppgifter'
+        borttagna_pga_behorighet:
+          type: integer
+          format: int32
+          description: Antal uppgifter som togs bort ur listan under detta anrop eftersom uppgiften blivit SID-märkt sedan tilldelning och handläggaren saknar SID-behörighet. 0 om inga togs bort.
 
     OperativUppgift:
       type: object
