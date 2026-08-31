@@ -1,3 +1,29 @@
+## 2.2.0 (2026-08-31)
+
+### Features
+
+-  add borttagna_pga_behorighet field to task list responses ([f5354](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/f5354430130a073) LisaWedin_Ductus)  
+
+### Bug Fixes
+
+-  **deps**  update jackson monorepo to v2.22.2 ([820e5](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/820e5d7eb62fff4) renovate[bot])  
+-  **deps**  update dependency org.openapitools:jackson-databind-nullable to v0.2.11 ([3cbb6](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/3cbb68e4447a564) renovate[bot])  
+-  **deps**  update jackson monorepo to v2.22.1 ([8ec8e](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/8ec8ed17ccd9931) renovate[bot])  
+-  Replace npm workflows with gradle workflows ([6dbff](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/6dbff5b435452cd) Lars Persson)  
+-  **deps**  update dependency se.fk.gradle:gradle-conventions to v1.18.3 ([4680c](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/4680c16eda8f919) renovate[bot])  
+
+### Dependency updates
+
+- update gradle to v9.7.0 ([ebfdb](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/ebfdb183560f6f3) renovate[bot])  
+- update gradle to v9.6.1 ([35eca](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/35ecac0e605f150) renovate[bot])  
+### Other changes
+
+**Add 500 response to all endpoints**
+
+
+[aa41b](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/aa41b13b2795c87) Ulf Slunga *2026-08-03 11:34:59*
+
+
 ## 2.1.0 (2026-06-17)
 
 ### Features
