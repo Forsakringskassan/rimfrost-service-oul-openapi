@@ -1,3 +1,9 @@
+## 2.3.0 (2026-09-04)
+
+### Features
+
+-  Add support for self-unassigning uppgift ([4b7d8](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/4b7d8fa86f714ed) Lars Persson)  
+
 ## 2.2.0 (2026-08-31)
 
 ### Features
