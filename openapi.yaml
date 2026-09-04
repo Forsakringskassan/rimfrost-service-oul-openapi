@@ -63,7 +63,7 @@ paths:
       - name: uppgift_id
         in: path
         required: true
-        description: ID för den uppgift som ska tilldelas om
+        description: ID för den uppgift som operationen ska utföras på
         schema:
           type: string
           format: uuid
@@ -83,6 +83,21 @@ paths:
           description: Bad request (t.ex. felaktigt uppgift_id)
         '403':
           description: Handläggaren tillhör inte teamet
+        '404':
+          description: Uppgiften hittades inte
+        '500':
+          description: Internt serverfel
+    
+    delete:
+      tags: [OperativtUppgiftslagerController]
+      operationId: deleteUppgiftHandlaggare
+      summary: Ta bort tilldelad uppgift från handläggare
+      description: Tar bort en tilldelad uppgift från handläggare. Handläggarens identitet hämtas från bearer-token. Kräver att uppgiftens tilldelade handläggare är samma som anropande handläggare.
+      responses:
+        '204':
+          description: Uppgiften är borttagen från handläggare
+        '403':
+          description: Handläggaren är inte tilldelad uppgift
         '404':
           description: Uppgiften hittades inte
         '500':
