@@ -1,3 +1,9 @@
+## 2.3.1 (2026-09-21)
+
+### Dependency updates
+
+- update gradle to v9.7.1 ([527cd](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/527cdd9f2989187) renovate[bot])  
+- pin forsakringskassan/.github action to d1349e6 ([0e2e8](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/0e2e854d3af4fad) renovate[bot])  
 ## 2.3.0 (2026-09-04)
 
 ### Features
