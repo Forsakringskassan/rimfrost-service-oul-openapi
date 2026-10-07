@@ -58,6 +58,48 @@ paths:
         '500':
           description: Internt serverfel
 
+  /uppgifter/individ/{id_typ}/{id_varde}:
+    parameters:
+      - name: id_typ
+        in: path
+        required: true
+        description: Typ-ID som identifierar vilken typ av individ-identifierare som anges
+        schema:
+          type: string
+      - name: id_varde
+        in: path
+        required: true
+        description: Värde för individ-identifieraren
+        schema:
+          type: string
+    get:
+      tags: [OperativtUppgiftslagerController]
+      operationId: getUppgifterIndivid
+      summary: Sök uppgifter för en individ
+      description: >
+        Returnerar operativa uppgifter kopplade till angiven individ.
+        SID-filtrering tillämpas — handläggare utan SID-behörighet får inga träffar för SID-märkta individer.
+      parameters:
+        - name: assignable
+          in: query
+          required: true
+          description: Filtrera på om uppgiften är tilldelningsbar via kön.
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Uppgifter hämtade OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUppgifterIndividResponse'
+        '400':
+          description: Bad request (t.ex. ogiltigt format på id_typ eller id_varde)
+        '403':
+          description: Handläggaren saknar behörighet att söka uppgifter med angiven kombination av parametrar
+        '500':
+          description: Internt serverfel
+
   /uppgifter/{uppgift_id}/handlaggare:
     parameters:
       - name: uppgift_id
@@ -71,7 +113,7 @@ paths:
       tags: [OperativtUppgiftslagerController]
       operationId: postUppgiftHandlaggare
       summary: Tilldela om en uppgift till den anropande handläggaren
-      description: Tilldelar uppgiften till den anropande handläggaren. Handläggarens identitet hämtas från bearer-token. Kräver att uppgiftens nuvarande tilldelade handläggare tillhör samma team.
+      description: Tilldelar uppgiften till den anropande handläggaren. Handläggarens identitet hämtas från bearer-token.
       responses:
         '200':
           description: Uppgiften omtilldelad OK
@@ -82,7 +124,7 @@ paths:
         '400':
           description: Bad request (t.ex. felaktigt uppgift_id)
         '403':
-          description: Handläggaren tillhör inte teamet
+          description: Uppgiften får inte tilldelas
         '404':
           description: Uppgiften hittades inte
         '500':
@@ -140,6 +182,14 @@ components:
           type: integer
           format: int32
           description: Antal uppgifter som togs bort ur listan under detta anrop eftersom uppgiften blivit SID-märkt sedan tilldelning och handläggaren saknar SID-behörighet. 0 om inga togs bort.
+
+    GetUppgifterIndividResponse:
+      type: object
+      required:
+        - operativa_uppgifter
+      properties:
+        operativa_uppgifter:
+          $ref: '#/components/schemas/OperativaUppgifter'
 
     OperativUppgift:
       type: object
