@@ -58,34 +58,20 @@ paths:
         '500':
           description: Internt serverfel
 
-  /uppgifter/individ/{id_typ}/{id_varde}:
-    parameters:
-      - name: id_typ
-        in: path
-        required: true
-        description: Typ-ID som identifierar vilken typ av individ-identifierare som anges
-        schema:
-          type: string
-      - name: id_varde
-        in: path
-        required: true
-        description: Värde för individ-identifieraren
-        schema:
-          type: string
-    get:
+  /uppgifter/individ:
+    post:
       tags: [OperativtUppgiftslagerController]
       operationId: getUppgifterIndivid
       summary: Sök uppgifter för en individ
       description: >
         Returnerar operativa uppgifter kopplade till angiven individ.
         SID-filtrering tillämpas — handläggare utan SID-behörighet får inga träffar för SID-märkta individer.
-      parameters:
-        - name: assignable
-          in: query
-          required: true
-          description: Filtrera på om uppgiften är tilldelningsbar via kön.
-          schema:
-            type: boolean
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SokUppgifterIndividRequest'
       responses:
         '200':
           description: Uppgifter hämtade OK
@@ -182,6 +168,23 @@ components:
           type: integer
           format: int32
           description: Antal uppgifter som togs bort ur listan under detta anrop eftersom uppgiften blivit SID-märkt sedan tilldelning och handläggaren saknar SID-behörighet. 0 om inga togs bort.
+
+    SokUppgifterIndividRequest:
+      type: object
+      required:
+        - id_typ
+        - id_varde
+        - assignable
+      properties:
+        id_typ:
+          type: string
+          description: Typ-ID som identifierar vilken typ av individ-identifierare som anges
+        id_varde:
+          type: string
+          description: Värde för individ-identifieraren
+        assignable:
+          type: boolean
+          description: Filtrera på om uppgiften är tilldelningsbar via kön.
 
     GetUppgifterIndividResponse:
       type: object
