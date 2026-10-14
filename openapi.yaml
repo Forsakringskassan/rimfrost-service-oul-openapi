@@ -61,7 +61,7 @@ paths:
   /uppgifter/individ:
     post:
       tags: [OperativtUppgiftslagerController]
-      operationId: getUppgifterIndivid
+      operationId: postUppgifterIndivid
       summary: Sök uppgifter för en individ
       description: >
         Returnerar operativa uppgifter kopplade till angiven individ.
@@ -71,14 +71,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SokUppgifterIndividRequest'
+              $ref: '#/components/schemas/PostUppgifterIndividRequest'
       responses:
         '200':
           description: Uppgifter hämtade OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetUppgifterIndividResponse'
+                $ref: '#/components/schemas/PostUppgifterIndividResponse'
         '400':
           description: Bad request (t.ex. ogiltigt format på id_typ eller id_varde)
         '403':
@@ -169,7 +169,7 @@ components:
           format: int32
           description: Antal uppgifter som togs bort ur listan under detta anrop eftersom uppgiften blivit SID-märkt sedan tilldelning och handläggaren saknar SID-behörighet. 0 om inga togs bort.
 
-    SokUppgifterIndividRequest:
+    PostUppgifterIndividRequest:
       type: object
       required:
         - id_typ
@@ -185,14 +185,32 @@ components:
         assignable:
           type: boolean
           description: Filtrera på om uppgiften är tilldelningsbar via kön.
+        yrkande_roller:
+          type: array
+          items:
+            type: string
+          description: Filtrera på yrkanderoll. Om listan är tom returneras uppgifter oavsett yrkanderoll.
 
-    GetUppgifterIndividResponse:
+    PostUppgifterIndividResponse:
       type: object
       required:
         - operativa_uppgifter
       properties:
         operativa_uppgifter:
-          $ref: '#/components/schemas/OperativaUppgifter'
+          type: array
+          items:
+            $ref: '#/components/schemas/OperativUppgiftYrkanderoll'
+
+    OperativUppgiftYrkanderoll:
+      allOf:
+        - $ref: '#/components/schemas/OperativUppgift'
+        - type: object
+          required:
+            - yrkande_roll
+          properties:
+            yrkande_roll:
+              type: string
+              description: Yrkanderoll kopplad till uppgiften för den sökta individen
 
     OperativUppgift:
       type: object
