@@ -83,6 +83,8 @@ paths:
           description: Bad request (t.ex. ogiltigt format på id_typ eller id_varde)
         '403':
           description: Handläggaren saknar behörighet att söka uppgifter med angiven kombination av parametrar
+        '501':
+          description: Begärd filterkombination stöds inte
         '500':
           description: Internt serverfel
 
@@ -174,7 +176,6 @@ components:
       required:
         - id_typ
         - id_varde
-        - assignable
       properties:
         id_typ:
           type: string
@@ -182,14 +183,19 @@ components:
         id_varde:
           type: string
           description: Värde för individ-identifieraren
-        assignable:
-          type: boolean
-          description: Filtrera på om uppgiften är tilldelningsbar via kön.
-        yrkande_roller:
+        statuses:
           type: array
           items:
             type: string
-          description: Filtrera på yrkanderoll. Om listan är tom returneras uppgifter oavsett yrkanderoll.
+            enum:
+              - Ny
+              - Tilldelad
+              - Avslutad
+              - Avbruten
+          description: En eller flera uppgiftsstatusar att filtrera på
+        assignable:
+          type: boolean
+          description: Filtrera på tilldelningsbarhet. Om ej angivet returneras uppgifter oavsett tilldelningsbarhet.
 
     PostUppgifterIndividResponse:
       type: object
