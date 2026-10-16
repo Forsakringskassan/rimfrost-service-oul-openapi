@@ -201,6 +201,8 @@ components:
         - handlaggning_id
         - status
         - skapad
+        - aktivitet_id
+        - processvy_url
       properties:
         uppgift_id:
           type: string
@@ -255,6 +257,14 @@ components:
         url:
           type: string
           description: Länk till resursen
+        aktivitet_id:
+          type: string
+          format: uuid
+          description: ID för den aktivitet i processen som uppgiften skapades i
+        processvy_url:
+          type: string
+          description: Relativ sökväg till den mikrofrontend där processen visar sin processvy (stegindikatorn), t.ex. /process/vah. Samma format som uppgiftens url.
+          example: /process/vah
 
     OperativaUppgifter:
       type: array
@@ -265,6 +275,8 @@ components:
           handlaggning_id: "5f3e26ca-c7f7-4711-b2ee-c09b38fa6f1c"
           status: "Tilldelad"
           skapad: "2025-03-25T00:00:00Z"
+          aktivitet_id: "a1b2c3d4-0000-4000-8000-000000000001"
+          processvy_url: "/process/vah"
 
     Idtyp:
       type: object
