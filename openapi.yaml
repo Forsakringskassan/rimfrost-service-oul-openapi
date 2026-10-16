@@ -201,8 +201,6 @@ components:
         - handlaggning_id
         - status
         - skapad
-        - aktivitet_id
-        - processvy_url
       properties:
         uppgift_id:
           type: string
@@ -260,10 +258,10 @@ components:
         aktivitet_id:
           type: string
           format: uuid
-          description: ID för den aktivitet i processen som uppgiften skapades i
+          description: ID för den aktivitet i processen som uppgiften skapades i. Saknas när uppgiften inte skapats i en processaktivitet.
         processvy_url:
           type: string
-          description: Relativ sökväg till den mikrofrontend där processen visar sin processvy (stegindikatorn), t.ex. /process/vah. Samma format som uppgiftens url.
+          description: Relativ sökväg till den mikrofrontend där processen visar sin processvy (stegindikatorn), t.ex. /process/vah. Samma format som uppgiftens url. Saknas när processen inte har någon processvy.
           example: /process/vah
 
     OperativaUppgifter:
