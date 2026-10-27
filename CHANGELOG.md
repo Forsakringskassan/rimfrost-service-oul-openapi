@@ -1,3 +1,25 @@
+## 2.4.0 (2026-10-27)
+
+### Features
+
+-  add required aktivitet_id and processvy_url to OperativUppgift (FKPOC-1152) ([cc93c](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/cc93c6801dffc4d) LisaWedin_Ductus)  
+-  Add individ search endpoint with SID-filtering to OUL API ([f900e](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/f900e99f33b7ae4) Ulf Slunga)  
+
+### Bug Fixes
+
+-  update workflows and gradle to 9.7.1 (#35) ([f34b0](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/f34b0391ba22cc4) NilsElveros)  
+-  make aktivitet_id and processvy_url optional on OperativUppgift (FKPOC-1152) ([cafa4](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/cafa4d310fd88d3) LisaWedin_Ductus)  
+-  add statuses filter, make assignable optional, add 501 response ([be554](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/be554ca7a5e5457) Ulf Slunga)  
+-  add yrkande_roller filter and yrkande_roll to individ endpoint ([97944](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/979446e3c8c15f6) Ulf Slunga)  
+-  **deps**  update jackson monorepo to v2.22.3 ([5dc07](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/5dc0727cb32a145) renovate[bot])  
+-  **deps**  update dependency org.openapitools:jackson-databind-nullable to v0.2.12 ([a195a](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/a195a786d4b2708) renovate[bot])  
+-  change getUppgifterIndivid from GET with path params to POST with body ([ea498](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/ea498918c0e7a49) Ulf Slunga)  
+
+### Dependency updates
+
+- update forsakringskassan/.github digest to cbd74f1 ([ce87c](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/ce87ce484d500fa) renovate[bot])  
+- update gradle to v9.8.1 ([6faa4](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/6faa4dd85df6dbb) renovate[bot])  
+- update forsakringskassan/.github digest to bfb01f7 ([f18a8](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/f18a8eaf632ffcf) renovate[bot])  
 ## 2.3.1 (2026-09-21)
 
 ### Dependency updates
