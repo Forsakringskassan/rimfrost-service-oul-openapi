@@ -58,33 +58,31 @@ paths:
         '500':
           description: Internt serverfel
 
-  /uppgifter/individ:
+  /uppgifter/individ/unassignable:
     post:
       tags: [OperativtUppgiftslagerController]
-      operationId: postUppgifterIndivid
-      summary: Sök uppgifter för en individ
+      operationId: postUppgifterIndividUnassignable
+      summary: Sök unassignable uppgifter för en individ
       description: >
-        Returnerar operativa uppgifter kopplade till angiven individ.
+        Returnerar unassignable operativa uppgifter kopplade till angiven individ.
         SID-filtrering tillämpas — handläggare utan SID-behörighet får inga träffar för SID-märkta individer.
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PostUppgifterIndividRequest'
+              $ref: '#/components/schemas/PostUppgifterIndividUnassignableRequest'
       responses:
         '200':
           description: Uppgifter hämtade OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PostUppgifterIndividResponse'
+                $ref: '#/components/schemas/PostUppgifterIndividUnassignableResponse'
         '400':
           description: Bad request (t.ex. ogiltigt format på id_typ eller id_varde)
         '403':
-          description: Handläggaren saknar behörighet att söka uppgifter med angiven kombination av parametrar
-        '501':
-          description: Begärd filterkombination stöds inte
+          description: Handläggaren saknar behörighet att söka uppgifter för angiven individ
         '500':
           description: Internt serverfel
 
@@ -171,7 +169,7 @@ components:
           format: int32
           description: Antal uppgifter som togs bort ur listan under detta anrop eftersom uppgiften blivit SID-märkt sedan tilldelning och handläggaren saknar SID-behörighet. 0 om inga togs bort.
 
-    PostUppgifterIndividRequest:
+    PostUppgifterIndividUnassignableRequest:
       type: object
       required:
         - id_typ
@@ -193,11 +191,8 @@ components:
               - Avslutad
               - Avbruten
           description: En eller flera uppgiftsstatusar att filtrera på
-        assignable:
-          type: boolean
-          description: Filtrera på tilldelningsbarhet. Om ej angivet returneras uppgifter oavsett tilldelningsbarhet.
 
-    PostUppgifterIndividResponse:
+    PostUppgifterIndividUnassignableResponse:
       type: object
       required:
         - operativa_uppgifter
