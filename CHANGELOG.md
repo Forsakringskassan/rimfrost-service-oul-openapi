@@ -1,3 +1,13 @@
+## 2.4.1 (2026-11-03)
+
+### Bug Fixes
+
+-  rename /uppgifter/individ to /uppgifter/individ/unassignable and remove assignable parameter ([9d55e](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/9d55e9de3ad8e91) Ulf Slunga)  
+-  **deps**  update dependency org.openapitools:jackson-databind-nullable to v0.2.13 ([c4fad](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/c4fad2a19e47a4d) renovate[bot])  
+
+### Dependency updates
+
+- update forsakringskassan/.github digest to 625efb1 ([0cc14](https://github.com/Forsakringskassan/rimfrost-service-oul-openapi/commit/0cc14ba61313a44) renovate[bot])  
 ## 2.4.0 (2026-10-27)
 
 ### Features
